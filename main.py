@@ -319,7 +319,7 @@ key_up = False
 pygame.key.set_repeat(5)  # stops the player when you stop pressing keys
 
 # Optional timer
-seconds_per_year = 5 * 60  # seconds
+seconds_per_year = 1 * 60  # seconds
 start_time = time.time()  # seconds since some day in 1970
 age = 1
 
@@ -370,9 +370,9 @@ while not game_over:
     look_for_gold(player1, gold1)
 
     # # Randomize the sprite's info
-    if player1.x == sprite1.x and player1.y == sprite1.y:
-        sprite1.randomize_info(all_info)
-        print(f"A sprite has appeared. It says '{sprite1.info}'")
+    # if player1.x == sprite1.x and player1.y == sprite1.y:
+    #     sprite1.randomize_info(all_info)
+    #     print(f"A sprite has appeared. It says '{sprite1.info}'")
 
     # age and grow taller and stronger every "year"
     if time.time() > (start_time + age * seconds_per_year) and full_grown is False:
@@ -384,9 +384,6 @@ while not game_over:
 
     draw_text("Player 1", font, light_grey, (5, height - 60))
     draw_text(f"Gold: {player1.gold}", font, light_grey, (5, height - 30))
-
-    draw_text("Player 2", font, light_grey, (player1.x, player1.y))
-    draw_text(f"Gold")
 
     # draw_text("Player 2", font, light_grey, (width - 75, height - 60))
     # draw_text(f"Gold: {player1.gold}", font, light_grey, (width - 75, height - 30))
