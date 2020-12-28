@@ -3,6 +3,7 @@ import time
 from classes import *
 from functions import *
 
+# from pygame.locals import *
 
 # Main
 # Local Variables
@@ -13,7 +14,7 @@ offset = [0, 0]
 spacing = 20
 step = 1
 full_grown = False
-width, height = 450, 450
+width, height = 640, 480
 move_left, move_right, move_up, move_down = False, False, False, False
 
 # Pygame Setup
@@ -68,13 +69,11 @@ sprite2_img = pygame.image.load(sprite2.image)
 screen.blit(sprite2_img, (sprite2.x, sprite2.y))
 sprite2.randomize_info(all_info)
 
-
 # Create pot(s) of gold
 gold1 = Gold(width, height)
 gold2 = Gold(width, height)
 print(f"Gold1:  x: {gold1.x}, y: {gold1.y}")
 print(f"Gold2:  x: {gold2.x}, y: {gold2.y}")
-
 
 # set title bar caption
 pygame.display.set_caption('adventure')
@@ -139,11 +138,7 @@ seconds_per_year = 1 * 60  # seconds
 start_time = time.time()  # seconds since some day in 1970
 age = 1  # starting age
 
-
 while not game_over:
-    # blocks interference from hovering the mouse over the game
-    pygame.event.set_blocked(pygame.MOUSEMOTION)
-
     # draw background
     screen.blit(bg, (0, 0))
 
@@ -162,6 +157,9 @@ while not game_over:
         pygame.display.update()
         del first_loop
 
+    # blocks interference from hovering the mouse over the game
+    pygame.event.set_blocked(pygame.MOUSEMOTION)
+
     # wait for an event
     event = pygame.event.wait()
 
@@ -175,11 +173,14 @@ while not game_over:
                        move_down)
 
     elif event.type == pygame.KEYDOWN:
-        move_left, move_right, move_up, move_down = capture_key_down(move_left,
-                                                                     move_right,
-                                                                     move_up,
-                                                                     move_down,
-                                                                     player1)
+        move_left, \
+            move_right, \
+            move_up, \
+            move_down = capture_key_down(move_left,
+                                         move_right,
+                                         move_up,
+                                         move_down,
+                                         player1)
 
     # move the player
     player1.move(move_up,
