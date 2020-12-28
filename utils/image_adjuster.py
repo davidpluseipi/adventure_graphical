@@ -1,7 +1,7 @@
 from PIL import Image
 
 # Opening an image_path, getting info, and showing the image_path
-im = Image.open('.\\rick_thinking.png')
+im = Image.open('../images/rick_thinking.png')
 print(im.format, im.size, im.mode)
 width, height = im.size
 side = min(width, height)
