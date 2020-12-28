@@ -34,7 +34,7 @@ class Player:
     def grow_taller(self):
         if self.height < 6:
             self.height += 0.1
-        self.strength += 10
+            self.strength += 10
 
     def move(self):
         if move_up and self.y > 0:
@@ -197,7 +197,7 @@ last_key = None
 offset = [0, 0]
 spacing = 20
 step = 1
-timer_expired = False
+full_grown = False
 dx, dy = 0, 0
 width, height = 450, 450
 move_left, move_right, move_up, move_down = False, False, False, False
@@ -268,10 +268,6 @@ black = (0, 0, 0)
 light_grey = (200, 200, 200)
 red = (213, 50, 80)
 
-# Optional timer
-game_clock = 10 * 60  # 10 minutes
-start_time = time.time()
-
 selection = " "
 selection_made = False
 
@@ -320,8 +316,12 @@ first_loop = True
 key_up = False
 
 # Prep to detect holding down a key as repeated down presses
-
 pygame.key.set_repeat(5)  # stops the player when you stop pressing keys
+
+# Optional timer
+seconds_per_year = 5 * 60  # seconds
+start_time = time.time()  # seconds since some day in 1970
+age = 1
 
 while not game_over:
     # draw background
@@ -370,16 +370,23 @@ while not game_over:
     look_for_gold(player1, gold1)
 
     # # Randomize the sprite's info
-    # if player1.x == sprite1.x and player1.y == sprite1.y:
-    #     sprite1.randomize_info(all_info)
-    #     print(f"A sprite has appeared. It says '{sprite1.info}'")
+    if player1.x == sprite1.x and player1.y == sprite1.y:
+        sprite1.randomize_info(all_info)
+        print(f"A sprite has appeared. It says '{sprite1.info}'")
 
-    if time.time() > (start_time + game_clock) and timer_expired is False:
-        print('Timer expired')
-        timer_expired = True
+    # age and grow taller and stronger every "year"
+    if time.time() > (start_time + age * seconds_per_year) and full_grown is False:
+        player1.grow_taller()
+        player1.show_status()
+        age += 1
+        if age >= 18:
+            full_grown = True
 
     draw_text("Player 1", font, light_grey, (5, height - 60))
     draw_text(f"Gold: {player1.gold}", font, light_grey, (5, height - 30))
+
+    draw_text("Player 2", font, light_grey, (player1.x, player1.y))
+    draw_text(f"Gold")
 
     # draw_text("Player 2", font, light_grey, (width - 75, height - 60))
     # draw_text(f"Gold: {player1.gold}", font, light_grey, (width - 75, height - 30))
