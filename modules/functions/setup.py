@@ -31,7 +31,7 @@ red = (213, 50, 80)
 player1 = Player("v00d00Master")
 
 # Define the path to the image_path that will be associated with player1
-player1.image_path = 'images/rick_thinking_small.png'
+player1.image_path = ['images/red_up3.png', 'images/red_down3.png', 'images/red_left3.png', 'images/red_right3.png']
 player1.image = player1.load_image()
 
 # Create a 'list' of everything the sprites could say

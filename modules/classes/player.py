@@ -11,7 +11,11 @@ class Player:
         self.y = 0
         self.step = 1
         self.gold = 0
-        self.image_path = "images/white_square.png"  # path to image_path file
+        self.image_path = ["images/white_square.png",  # up
+                           "images/white_square.png",  # down
+                           "images/white_square.png",  # left
+                           "images/white_square.png"]  # right
+        self.current_image = 1
         self.image = self.load_image()  # image_path object
         self.age = 1
         self.full_grown = False
@@ -21,7 +25,8 @@ class Player:
         self.right = False
 
     def load_image(self):
-        return pygame.image.load(self.image_path).convert()  # loads and converts to pixel format of display
+        return pygame.image.load(self.image_path[self.current_image]).convert()  # loads and converts to pixel format
+        # of display
 
     def show_status(self):
         print(f"\n{self.name}")

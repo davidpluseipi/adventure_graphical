@@ -1,11 +1,11 @@
 from PIL import Image
 
 # Opening an image_path, getting info, and showing the image_path
-im = Image.open('../images/rick_thinking.png')
+im = Image.open('../images/red_right.png')
 print(im.format, im.size, im.mode)
 width, height = im.size
 side = min(width, height)
-scale_down_factor = 8
+scale_down_factor = 11
 # left = 0
 # top = height / scale_down_factor
 # right = side
@@ -14,8 +14,8 @@ scale_down_factor = 8
 
 new_size = (max(int(round(width/scale_down_factor)), 1),
             max(int(round(height/scale_down_factor)), 1))
-im1 = im.resize(new_size)
-im1.save('.\\rick_thinking_small.png', 'PNG')
+im1 = im.resize((40, 80))
+im1.save('../images/red_right3.png', 'PNG')
 im1.show()
 
 
